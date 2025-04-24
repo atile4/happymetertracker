@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happy_meter/slider_item.dart';
 
 class MeterScreen extends StatefulWidget {
   const MeterScreen({super.key});
@@ -50,136 +51,58 @@ class _MeterScreenState extends State<MeterScreen> {
                   fontWeight: FontWeight.bold,
                 )
             ),
+            
+            //OVERALL MOOD 
             SizedBox(height: 25,),
-            Text(
-              "Overall Mood: ${_mood.toInt()}",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                        thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 20.0)),
-                child: Slider(
-                  value : _mood,
-                  min: 0.0,
-                  max: 20.0,
-                  divisions: 20,
-                  activeColor: const Color.fromARGB(0xFF, 0x74, 0xDB, 0xEF),
-                  inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                  onChanged: (double value) {
-                    setState(() {
-                      _mood = value;
-                    });
-                  },
-                ),
-              ),
+            SliderItem(
+              label: "Overall Mood: ",
+              value: _mood,
+              min: 0.0,
+              max: 20.0,
+              divisions: 20,
+              onChanged: (val) => setState(() => _mood = val),
+              thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
+              activeColor: const Color.fromARGB(0xFF, 0x74, 0xDB, 0xEF),
+              inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
             ),
 
             //ENERGY LEVELS
-            Text(
-              "Energy Level: ${_energy.toInt()}",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                        thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 20.0)),
-                child: Slider(
-                  value : _energy,
-                  min: 0.0,
-                  max: 10.0,
-                  divisions: 10,
-                  activeColor: const Color.fromARGB(0xFF, 0x74, 0xDB, 0xEF),
-                  inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                  onChanged: (double value) {
-                    setState(() {
-                      _energy = value;
-                    });
-                  },
-                ),
-              ),
+            SliderItem(
+              label: "Energy Level: ",
+              value: _energy,
+              min: 0.0,
+              max: 10.0,
+              divisions: 10,
+              onChanged: (val) => setState(() => _energy = val),
+              thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
+              activeColor: const Color.fromARGB(255, 249, 249, 2),
+              inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
             ),
 
             //STRESS LEVELS
-            Text(
-              "Stress Level: ${_stress.toInt()}",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                        thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 20.0)),
-                child: Slider(
-                  value : _stress,
-                  min: 0.0,
-                  max: 10.0,
-                  divisions: 10,
-                  activeColor: const Color.fromARGB(0xFF, 0x74, 0xDB, 0xEF),
-                  inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                  onChanged: (double value) {
-                    setState(() {
-                      _stress = value;
-                    });
-                  },
-                ),
-              ),
+            SliderItem(
+              label: "Stress Level: ",
+              value: _stress,
+              min: 0,
+              max: 10,
+              divisions: 10,
+              onChanged: (val) => setState(() => _stress = val),
+              thumbColor: const Color.fromARGB(255, 252, 168, 94),
+              activeColor: const Color.fromARGB(255, 253, 121, 6),
+              inactiveColor: const Color.fromARGB(255, 239, 200, 116),
             ),
 
             // LONLINESS LEVEL
-            Text(
-              "Loneliness Level: ${_lon.toInt()}",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                        thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 20.0)),
-                child: Slider(
-                  value : _lon,
-                  min: 0.0,
-                  max: 10.0,
-                  divisions: 10,
-                  activeColor: const Color.fromARGB(0xFF, 0x74, 0xDB, 0xEF),
-                  inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-                  onChanged: (double value) {
-                    setState(() {
-                      _lon = value;
-                    });
-                  },
-                ),
-              ),
+            SliderItem(
+              label: "Loneliness Level: ",
+              value: _lon,
+              min: 0,
+              max: 10,
+              divisions: 10,
+              onChanged: (val) => setState(() => _lon = val),
+              thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
+              activeColor: const Color.fromARGB(255, 80, 120, 240),
+              inactiveColor: const Color.fromARGB(0xFF, 0x69, 0xAA, 0xBE),
             ),
           ],
         )
