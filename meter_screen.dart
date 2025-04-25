@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happy_meter/slider_item.dart';
+import 'package:happy_meter/happycalculator.dart';
 
 class MeterScreen extends StatefulWidget {
   const MeterScreen({super.key});
@@ -22,30 +23,29 @@ class _MeterScreenState extends State<MeterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        // backgroundColor: Colors.blueGrey,
         elevation: 0,
         title: const Text(
           "Happy Meter",
           style: TextStyle(color: Colors.white),
         ),
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            icon: 
+            Icon(
+              Icons.menu,
+              size: 32,
+              )
+          )
+        ],
       ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget> [
-            
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const Text(
-                "Happy Meter:",
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ),
             Text(
-                _mood.toString(),
+                happycalc(_mood.toInt(), _energy.toInt(), _stress.toInt(), _lon.toInt()).toString(),
                 style: TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
@@ -53,7 +53,6 @@ class _MeterScreenState extends State<MeterScreen> {
             ),
             
             //OVERALL MOOD 
-            SizedBox(height: 25,),
             SliderItem(
               label: "Overall Mood: ",
               value: _mood,
@@ -65,7 +64,7 @@ class _MeterScreenState extends State<MeterScreen> {
               activeColor: const Color.fromARGB(0xFF, 0x74, 0xDB, 0xEF),
               inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
             ),
-
+            SizedBox(height: 16,),
             //ENERGY LEVELS
             SliderItem(
               label: "Energy Level: ",
@@ -75,10 +74,10 @@ class _MeterScreenState extends State<MeterScreen> {
               divisions: 10,
               onChanged: (val) => setState(() => _energy = val),
               thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-              activeColor: const Color.fromARGB(255, 249, 249, 2),
-              inactiveColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
+              activeColor: const Color.fromARGB(255, 198, 198, 15),
+              inactiveColor: const Color.fromARGB(97, 237, 237, 18),
             ),
-
+            SizedBox(height: 16,),
             //STRESS LEVELS
             SliderItem(
               label: "Stress Level: ",
@@ -91,7 +90,7 @@ class _MeterScreenState extends State<MeterScreen> {
               activeColor: const Color.fromARGB(255, 253, 121, 6),
               inactiveColor: const Color.fromARGB(255, 239, 200, 116),
             ),
-
+            SizedBox(height: 16,),
             // LONLINESS LEVEL
             SliderItem(
               label: "Loneliness Level: ",
@@ -101,9 +100,14 @@ class _MeterScreenState extends State<MeterScreen> {
               divisions: 10,
               onChanged: (val) => setState(() => _lon = val),
               thumbColor: const Color.fromARGB(0xFF, 0x5E, 0x88, 0xFC),
-              activeColor: const Color.fromARGB(255, 80, 120, 240),
-              inactiveColor: const Color.fromARGB(0xFF, 0x69, 0xAA, 0xBE),
+              activeColor: const Color.fromARGB(255, 117, 0, 200),
+              inactiveColor: const Color.fromARGB(32, 117, 0, 200),
             ),
+            ElevatedButton(
+              onPressed: () {}, 
+              child: Text("save")
+            )
+
           ],
         )
       ),
